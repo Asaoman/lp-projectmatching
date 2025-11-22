@@ -1,9 +1,10 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-const logos = [
-    "IVS", "Y Combinator", "Incubate Fund", "CyberAgent", "Mercari", "SoftBank",
-    "IVS", "Y Combinator", "Incubate Fund", "CyberAgent", "Mercari", "SoftBank"
+const companies = [
+    "メルカリ", "SmartHR", "Sansan", "ラクスル", "UUUM",
+    "freee", "Wantedly", "ビズリーチ", "LayerX", "10X",
+    "メルカリ", "SmartHR", "Sansan", "ラクスル", "UUUM"
 ];
 
 const SocialProof = () => {
@@ -22,7 +23,7 @@ const SocialProof = () => {
                     animate={{ x: ["0%", "-50%"] }}
                     transition={{ duration: 20, ease: "linear", repeat: Infinity }}
                 >
-                    {[...logos, ...logos].map((logo, index) => (
+                    {[...companies, ...companies].map((logo, index) => (
                         <span
                             key={index}
                             className="text-xl md:text-2xl font-bold text-gray-800 font-mono uppercase tracking-tighter"

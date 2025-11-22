@@ -8,8 +8,8 @@ const BentoGrid = () => {
         <section className="py-32 bg-black relative z-10">
             <div className="container">
                 <div className="mb-16">
-                    <h2 className="text-4xl md:text-6xl font-bold tracking-tighter mb-4">The System</h2>
-                    <p className="text-gray-500 font-mono">ADVANCED CAREER ACCELERATION PROTOCOLS</p>
+                    <h2 className="text-4xl md:text-6xl font-bold tracking-tighter mb-4">あなたを、見つける仕組み</h2>
+                    <p className="text-gray-500 font-mono">実績を可視化し、企業から直接オファーが届く</p>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8 h-auto md:h-[600px]">
@@ -26,8 +26,8 @@ const BentoGrid = () => {
                                 <FaGithub />
                             </div>
                             <div>
-                                <h3 className="text-2xl font-bold mb-2">AI Analysis</h3>
-                                <p className="text-gray-400 text-sm">Code never lies.</p>
+                                <h3 className="text-2xl font-bold mb-2">あなたの実績を、可視化する</h3>
+                                <p className="text-gray-400 text-sm">プロジェクト、インターン、課外活動。すべてが評価される。</p>
                             </div>
 
                             {/* Fake 3D Graph Visualization */}
@@ -60,14 +60,14 @@ const BentoGrid = () => {
                                 <FaCommentDots />
                             </div>
                             <div>
-                                <h3 className="text-2xl font-bold mb-2">Direct Offer</h3>
-                                <p className="text-gray-400 text-sm">No HR. Just Founders.</p>
+                                <h3 className="text-2xl font-bold mb-2">企業から、直接オファーが届く</h3>
+                                <p className="text-gray-400 text-sm">人事ではなく、経営者から。</p>
                             </div>
 
                             <div className="mt-8 space-y-4">
                                 <div className="bg-white/5 p-4 rounded-2xl rounded-tl-none border border-white/5">
                                     <p className="text-xs text-gray-400 mb-1">CEO</p>
-                                    <p className="text-sm">君のGitHub見たよ。来週オフィス来れる？</p>
+                                    <p className="text-sm">あなたのプロフィール見ました。来週、話しませんか？</p>
                                 </div>
                                 <div className="bg-[var(--color-accent-core)]/20 p-4 rounded-2xl rounded-tr-none border border-[var(--color-accent-core)]/20 ml-auto w-fit">
                                     <p className="text-sm text-[var(--color-accent-core)]">興味あります。</p>
@@ -93,13 +93,13 @@ const BentoGrid = () => {
                                         <FaPlay className="ml-1" />
                                     </div>
                                     <div>
-                                        <h3 className="text-2xl font-bold">Draft TV</h3>
-                                        <p className="text-gray-400 text-sm">Live Streaming Draft Event</p>
+                                        <h3 className="text-2xl font-bold">Draft Event</h3>
+                                        <p className="text-gray-400 text-sm">経営者の前で、自分をプレゼンする</p>
                                     </div>
                                 </div>
                                 <p className="text-gray-400 max-w-md">
-                                    投資家・経営者の前で己をプレゼンし、その場で入札（オファー）を勝ち取れ。
-                                    全プロセスはYouTubeで公開される。
+                                    投資家・起業家が審査員。
+                                    その場でオファーを勝ち取る、新しい就活。
                                 </p>
                             </div>
 

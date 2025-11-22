@@ -31,7 +31,7 @@ const Hero = ({ onOpenEntry }) => {
                         className="text-6xl md:text-9xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-400 to-white bg-[length:200%_auto] pb-4"
                         style={{ fontFamily: "'Inter Tight', sans-serif" }}
                     >
-                        就活を、<br className="md:hidden" />ハックせよ。
+                        規格外のキャリアを、<br className="md:hidden" />ここから。
                     </h1>
                 </motion.div>
 
@@ -42,11 +42,11 @@ const Hero = ({ onOpenEntry }) => {
                     className="flex flex-col md:flex-row gap-6 justify-center items-center"
                 >
                     <MagneticButton onClick={onOpenEntry} variant="primary">
-                        ENTER SYSTEM <FaArrowRight />
+                        挑戦を始める <FaArrowRight />
                     </MagneticButton>
 
                     <MagneticButton variant="secondary">
-                        VIEW MANIFESTO
+                        ストーリーを見る
                     </MagneticButton>
                 </motion.div>
             </div>

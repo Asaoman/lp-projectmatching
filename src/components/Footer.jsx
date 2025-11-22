@@ -45,7 +45,7 @@ const Footer = ({ onOpenEntry }) => {
 
             <div className="relative z-10 text-center">
                 <h2 className="text-4xl md:text-6xl font-black mb-12 tracking-tighter">
-                    Ready to deploy?
+                    規格外のキャリアを、<br />始めよう。
                 </h2>
 
                 <div className="relative inline-block">
@@ -77,7 +77,7 @@ const Footer = ({ onOpenEntry }) => {
                     </motion.button>
                 </div>
 
-                <p className="mt-8 text-gray-500 text-xs font-mono">LONG PRESS TO INITIALIZE</p>
+                <p className="mt-8 text-gray-500 text-xs font-mono">長押しで登録</p>
             </div>
 
             <div className="absolute bottom-8 text-center w-full">
