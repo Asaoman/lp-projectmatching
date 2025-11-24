@@ -1,87 +1,60 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { motion, useAnimation } from 'framer-motion';
+import React from 'react';
+import { motion } from 'framer-motion';
 
-const Footer = ({ onOpenEntry }) => {
-    const [isPressing, setIsPressing] = useState(false);
-    const [progress, setProgress] = useState(0);
-    const controls = useAnimation();
-    const intervalRef = useRef(null);
-
-    const handleMouseDown = () => {
-        setIsPressing(true);
-        controls.start({ scale: 0.9 });
-
-        let p = 0;
-        intervalRef.current = setInterval(() => {
-            p += 2;
-            setProgress(p);
-            if (p >= 100) {
-                clearInterval(intervalRef.current);
-                onOpenEntry();
-                setProgress(0);
-                setIsPressing(false);
-            }
-        }, 20);
-    };
-
-    const handleMouseUp = () => {
-        setIsPressing(false);
-        controls.start({ scale: 1 });
-        clearInterval(intervalRef.current);
-        setProgress(0);
-    };
-
+const Footer = () => {
     return (
-        <footer className="py-32 relative overflow-hidden bg-black flex flex-col items-center justify-center min-h-screen">
-            {/* Black Hole Effect (Enhanced) */}
-            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] bg-[radial-gradient(circle,rgba(0,0,0,1)_0%,rgba(59,130,246,0.05)_40%,transparent_70%)] z-0" />
-            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] border border-white/5 rounded-full animate-[spin_20s_linear_infinite] opacity-20" />
-            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] border border-white/10 rounded-full animate-[spin_15s_linear_infinite_reverse] opacity-30" />
+        <footer className="bg-void text-platinum pt-32 pb-12 px-6 border-t border-zinc-700">
+            <div className="max-w-7xl mx-auto">
 
-            {/* Particle Suction Simulation (CSS) */}
-            <div className="absolute inset-0 opacity-20 pointer-events-none">
-                <div className="absolute top-1/2 left-1/2 w-[800px] h-[800px] -translate-x-1/2 -translate-y-1/2 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] animate-[spin_60s_linear_infinite]" />
-            </div>
-
-            <div className="relative z-10 text-center">
-                <h2 className="text-4xl md:text-6xl font-black mb-12 tracking-tighter">
-                    規格外のキャリアを、<br />始めよう。
-                </h2>
-
-                <div className="relative inline-block">
-                    {/* Progress Ring */}
-                    <svg className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-48 h-48 -rotate-90 pointer-events-none">
-                        <circle
-                            cx="96"
-                            cy="96"
-                            r="46"
-                            stroke="var(--color-accent-core)"
-                            strokeWidth="2"
-                            fill="transparent"
-                            strokeDasharray="289"
-                            strokeDashoffset={289 - (289 * progress) / 100}
-                            className="transition-all duration-100 ease-linear"
-                        />
-                    </svg>
-
-                    <motion.button
-                        onMouseDown={handleMouseDown}
-                        onMouseUp={handleMouseUp}
-                        onMouseLeave={handleMouseUp}
-                        onTouchStart={handleMouseDown}
-                        onTouchEnd={handleMouseUp}
-                        animate={controls}
-                        className="w-24 h-24 rounded-full bg-white text-black font-bold text-xs tracking-widest flex items-center justify-center relative z-10 hover:shadow-[0_0_50px_rgba(255,255,255,0.5)] transition-shadow duration-300"
+                {/* メインCTAエリア */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-16 mb-32">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        className="group cursor-pointer"
                     >
-                        HOLD
-                    </motion.button>
+                        <h3 className="text-sm font-mono-data text-zinc-400 mb-4">企業の方へ</h3>
+                        <div className="text-5xl md:text-7xl font-serif-display group-hover:text-signal-amber transition-colors duration-500">
+                            プロジェクトを<br />相談する
+                        </div>
+                        <div className="mt-8 w-full h-px bg-zinc-700 group-hover:bg-signal-amber transition-colors duration-500"></div>
+                    </motion.div>
+
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.2 }}
+                        className="group cursor-pointer"
+                    >
+                        <h3 className="text-sm font-mono-data text-zinc-400 mb-4">専門家の方へ</h3>
+                        <div className="text-5xl md:text-7xl font-serif-display group-hover:text-signal-amber transition-colors duration-500">
+                            登録を<br />申し込む
+                        </div>
+                        <div className="mt-8 w-full h-px bg-zinc-700 group-hover:bg-signal-amber transition-colors duration-500"></div>
+                    </motion.div>
                 </div>
 
-                <p className="mt-8 text-gray-500 text-xs font-mono">長押しで登録</p>
-            </div>
+                {/* ボトムバー */}
+                <div className="flex flex-col md:flex-row justify-between items-end gap-8">
+                    <div>
+                        <div className="text-2xl font-serif-display mb-2">THE AXIS</div>
+                        <div className="text-xs font-mono-data text-zinc-500">
+                            © 2025 THE AXIS. ALL RIGHTS RESERVED.<br />
+                            東京 / シンガポール / ニューヨーク
+                        </div>
+                    </div>
 
-            <div className="absolute bottom-8 text-center w-full">
-                <p className="text-gray-700 text-[10px] font-mono">© 2025 TOP GUN CAREER. ALL RIGHTS RESERVED.</p>
+                    <div className="flex gap-8">
+                        {["LINKEDIN", "TWITTER", "お問い合わせ"].map((link, i) => (
+                            <a key={i} href="#" className="text-xs font-mono-data text-zinc-400 hover:text-platinum transition-colors">
+                                {link}
+                            </a>
+                        ))}
+                    </div>
+                </div>
+
             </div>
         </footer>
     );

@@ -7,24 +7,18 @@ module.exports = {
     theme: {
         extend: {
             colors: {
-                // V3.0 Palette: Cosmic Void
-                'bg-depth': '#0A0A0A', // Main Background (OLED optimized)
-                'bg-surface': '#121212', // Cards/Panels
-                'border-subtle': 'rgba(255, 255, 255, 0.08)',
-                'text-primary': '#EDEDED', // Off-white
-                'text-muted': '#888888',
-                'accent-glow': '#3B82F6', // Fallback for gradients
-
-                // Legacy support (mapping to new palette where possible)
-                canvas: '#0A0A0A',
-                surface: '#121212',
-                'accent-core': '#3B82F6',
-                'accent-core-end': '#8B5CF6',
-                'accent-alert': '#F43F5E',
+                'void-black': '#0A0A0A', // Slightly softer black
+                'platinum': '#E0E0E0',
+                'signal-amber': '#D4AF37', // Metallic Gold instead of Amber
+                'deep-navy': '#050A14',
+                'silver': '#C0C0C0',
+                'bg-depth': '#020408',
+                'bg-surface': '#0B101A',
+                'text-primary': '#F0F2F5',
+                'text-muted': '#8892B0',
             },
             fontFamily: {
-                sans: ['Inter Tight', 'sans-serif'],
-                mono: ['JetBrains Mono', 'monospace'],
+                mono: ['JetBrains Mono', 'monospace'], // Data
             },
         },
     },
