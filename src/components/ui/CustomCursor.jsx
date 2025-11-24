@@ -1,59 +1,52 @@
-import React, { useEffect, useRef } from 'react';
-import gsap from 'gsap';
+import React, { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
 
 const CustomCursor = () => {
-    const cursorRef = useRef(null);
-    const followerRef = useRef(null);
+    const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+    const [isHovering, setIsHovering] = useState(false);
 
     useEffect(() => {
-        const cursor = cursorRef.current;
-        const follower = followerRef.current;
-
-        const moveCursor = (e) => {
-            gsap.to(cursor, {
-                x: e.clientX,
-                y: e.clientY,
-                duration: 0.1,
-            });
-            gsap.to(follower, {
-                x: e.clientX,
-                y: e.clientY,
-                duration: 0.5,
-                ease: "power3.out"
-            });
+        const updateMousePosition = (e) => {
+            setMousePosition({ x: e.clientX, y: e.clientY });
         };
 
-        const onHover = () => {
-            gsap.to(cursor, { scale: 0.5 });
-            gsap.to(follower, { scale: 3, backgroundColor: 'rgba(255, 255, 255, 0.1)', borderColor: 'transparent' });
+        const handleMouseOver = (e) => {
+            if (e.target.tagName === 'BUTTON' || e.target.tagName === 'A' || e.target.closest('.cursor-pointer')) {
+                setIsHovering(true);
+            } else {
+                setIsHovering(false);
+            }
         };
 
-        const onLeave = () => {
-            gsap.to(cursor, { scale: 1 });
-            gsap.to(follower, { scale: 1, backgroundColor: 'transparent', borderColor: '#D4AF37' });
-        };
-
-        window.addEventListener('mousemove', moveCursor);
-
-        const links = document.querySelectorAll('a, button, .cursor-pointer');
-        links.forEach(link => {
-            link.addEventListener('mouseenter', onHover);
-            link.addEventListener('mouseleave', onLeave);
-        });
+        window.addEventListener('mousemove', updateMousePosition);
+        window.addEventListener('mouseover', handleMouseOver);
 
         return () => {
-            window.removeEventListener('mousemove', moveCursor);
-            links.forEach(link => {
-                link.removeEventListener('mouseenter', onHover);
-                link.removeEventListener('mouseleave', onLeave);
-            });
+            window.removeEventListener('mousemove', updateMousePosition);
+            window.removeEventListener('mouseover', handleMouseOver);
         };
     }, []);
 
     return (
         <>
-            <div ref={cursorRef} className="fixed top-0 left-0 w-2 h-2 bg-signal-amber rounded-full pointer-events-none z-[9999] -translate-x-1/2 -translate-y-1/2 mix-blend-difference" />
-            <div ref={followerRef} className="fixed top-0 left-0 w-8 h-8 border border-signal-amber rounded-full pointer-events-none z-[9998] -translate-x-1/2 -translate-y-1/2 transition-colors duration-300 mix-blend-difference" />
+            <motion.div
+                className="fixed top-0 left-0 w-4 h-4 bg-signal-amber rounded-full pointer-events-none z-50 mix-blend-difference"
+                animate={{
+                    x: mousePosition.x - 8,
+                    y: mousePosition.y - 8,
+                    scale: isHovering ? 2.5 : 1,
+                }}
+                transition={{ type: "spring", stiffness: 500, damping: 28 }}
+            />
+            <motion.div
+                className="fixed top-0 left-0 w-8 h-8 border border-platinum rounded-full pointer-events-none z-50 mix-blend-difference"
+                animate={{
+                    x: mousePosition.x - 16,
+                    y: mousePosition.y - 16,
+                    scale: isHovering ? 1.5 : 1,
+                }}
+                transition={{ type: "spring", stiffness: 250, damping: 20 }}
+            />
         </>
     );
 };

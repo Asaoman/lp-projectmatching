@@ -1,15 +1,15 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 
 const Hero = () => {
   const containerRef = useRef(null);
   const [budget, setBudget] = useState(12450000000);
 
-  // リアルタイム予算ティッカー
+  // リアルタイム予算ティッカー (HUD Style)
   useEffect(() => {
     const interval = setInterval(() => {
-      setBudget(prev => prev + Math.floor(Math.random() * 100000));
-    }, 2000);
+      setBudget(prev => prev + Math.floor(Math.random() * 500000));
+    }, 1500);
     return () => clearInterval(interval);
   }, []);
 
@@ -18,102 +18,105 @@ const Hero = () => {
     offset: ["start start", "end start"]
   });
 
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 1.1]);
+
+  // Staggered Text Animation
+  const container = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.3
+      }
+    }
+  };
+
+  const item = {
+    hidden: { y: 20, opacity: 0, filter: "blur(10px)" },
+    show: { y: 0, opacity: 1, filter: "blur(0px)", transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } }
+  };
 
   return (
-    <div ref={containerRef} className="relative min-h-screen w-full overflow-hidden bg-void flex flex-col justify-center items-center py-32">
-      {/* グリッド背景 */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#262626_1px,transparent_1px),linear-gradient(to_bottom,#262626_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-20"></div>
+    <div ref={containerRef} className="relative min-h-screen w-full overflow-hidden flex flex-col justify-center items-center py-32">
 
-      {/* グラデーションオーバーレイ */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-void to-void"></div>
+      {/* Cinematic Background Layer */}
+      <motion.div style={{ scale }} className="absolute inset-0 z-0">
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-void/80 to-void z-10"></div>
+        {/* Placeholder for abstract video or heavy gradient */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-zinc-800/20 via-void to-void opacity-50"></div>
+      </motion.div>
 
-      {/* コンテンツコンテナ */}
+      {/* Content Container */}
       <motion.div
         style={{ y, opacity }}
-        className="relative z-10 text-center space-y-12 max-w-5xl px-6"
+        className="relative z-10 text-center space-y-16 max-w-6xl px-6"
+        variants={container}
+        initial="hidden"
+        animate="show"
       >
 
-        {/* ラベル */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className="inline-flex items-center gap-2 px-4 py-2 glass-card rounded-full"
-        >
-          <span className="w-2 h-2 bg-signal-amber rounded-full animate-pulse"></span>
-          <span className="text-sm font-mono text-zinc-400 tracking-wide">
-            VIZOR Agent
+        {/* HUD Label */}
+        <motion.div variants={item} className="inline-flex items-center gap-3 px-4 py-2 border border-platinum/10 bg-platinum/5 backdrop-blur-md rounded-full">
+          <span className="relative flex h-2 w-2">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-signal-amber opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-signal-amber"></span>
+          </span>
+          <span className="text-xs font-mono text-platinum/70 tracking-[0.2em] uppercase">
+            Project-Based Access Only
           </span>
         </motion.div>
 
-        {/* メインタイトル */}
-        <div className="space-y-6">
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-5xl md:text-7xl lg:text-8xl font-display font-serif text-platinum leading-tight tracking-tight"
-          >
-            トップエキスパートを、<br />
-            プロジェクト単位で<br />
-            <span className="gradient-text">アサイン</span>
+        {/* Main Title with Split Text */}
+        <div className="space-y-4">
+          <motion.h1 variants={item} className="text-6xl md:text-8xl lg:text-9xl font-display font-bold text-platinum leading-[0.9] tracking-tighter mix-blend-difference">
+            VIZOR <span className="text-zinc-600">AGENT</span>
           </motion.h1>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="text-lg md:text-xl font-body text-zinc-400 max-w-3xl mx-auto leading-relaxed"
-          >
-            業界トップクラスの専門家を、<br />
-            あなたのプロジェクトに。
+          <motion.p variants={item} className="text-xl md:text-2xl font-light text-zinc-400 tracking-wide max-w-3xl mx-auto leading-relaxed">
+            正社員では採用不可能なトップ層を、<br />
+            <span className="text-platinum font-normal">「プロジェクト単位」</span>でアサインする。
           </motion.p>
         </div>
 
-        {/* 統計グリッド */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-8"
-        >
+        {/* HUD Stats Grid */}
+        <motion.div variants={item} className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 pt-12 border-t border-platinum/10 max-w-4xl mx-auto">
           {[
-            { label: "登録エキスパート", value: "500+", desc: "各分野のトップクラス" },
-            { label: "プロジェクト成功率", value: "98%", desc: "高い満足度" },
-            { label: "平均アサイン期間", value: "3営業日", desc: "スピーディー" }
-          ].map((item, i) => (
-            <motion.div key={i}
-              className="glass-card p-6 rounded-lg"
-              whileHover={{ scale: 1.03, rotate: 0.5 }}
-              transition={{ type: "spring", stiffness: 300 }}
-            >
-              <div className="text-sm font-mono text-zinc-500 mb-2">{item.label}</div>
-              <div className="text-3xl font-display text-platinum mb-1">{item.value}</div>
-              <div className="text-xs text-zinc-600">{item.desc}</div>
-            </motion.div>
+            { label: "TARGET", value: "IMPOSSIBLE", sub: "採用困難なトップ人材" },
+            { label: "METHOD", value: "PROJECT", sub: "期限付きミッション" },
+            { label: "IMPACT", value: "MAXIMUM", sub: "事業変革・V字回復" },
+            { label: "ACCESS", value: "EXCLUSIVE", sub: "完全審査制" }
+          ].map((stat, i) => (
+            <div key={i} className="text-left space-y-1 group cursor-default">
+              <div className="text-[10px] font-mono text-zinc-600 tracking-widest uppercase group-hover:text-signal-amber transition-colors duration-300">{stat.label}</div>
+              <div className="text-2xl md:text-3xl font-display text-platinum group-hover:scale-105 origin-left transition-transform duration-300">{stat.value}</div>
+              <div className="text-[10px] text-zinc-500">{stat.sub}</div>
+            </div>
           ))}
         </motion.div>
 
-        {/* CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.5 }}
-          className="flex flex-col items-center gap-6 pt-8"
-        >
-          <button className="group relative px-8 py-4 bg-platinum text-void-black font-semibold tracking-wide rounded-lg overflow-hidden hover:bg-signal-amber transition-all duration-300 transform hover:scale-105">
-            <span className="relative z-10">無料で相談する</span>
+        {/* Magnetic CTA */}
+        <motion.div variants={item} className="pt-12">
+          <button
+            onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+            className="group relative px-10 py-5 bg-platinum text-void-black font-bold tracking-widest uppercase rounded-none overflow-hidden hover:bg-signal-amber transition-colors duration-500 clip-path-slant"
+          >
+            お問い合わせ
+            <svg className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+            <div className="absolute inset-0 bg-signal-amber transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-out"></div>
           </button>
 
-          {/* ライブ予算ティッカー */}
-          <div className="flex items-center gap-3 text-sm font-mono text-zinc-500">
-            <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
-            <span>稼働中プロジェクト数:</span>
-            <span className="text-platinum font-semibold">{Math.floor(budget / 10000000)}</span>
+          {/* Live Ticker Footer */}
+          <div className="mt-8 flex justify-center items-center gap-4 text-[10px] font-mono text-zinc-600">
+            <span>ACTIVE MISSIONS:</span>
+            <span className="text-platinum">142</span>
+            <span className="text-signal-amber">DEPLOYING...</span>
           </div>
         </motion.div>
+
       </motion.div>
     </div>
   );

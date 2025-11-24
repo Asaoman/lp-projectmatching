@@ -1,13 +1,12 @@
 import React, { useEffect } from 'react';
 import Hero from './components/Hero';
-import Benefits from './components/Benefits';
-import Problem from './components/Problem';
-import Authority from './components/Trust';
-import Compensation from './components/Compensation';
-import Impact from './components/Market';
-import Contact from './components/Contact';
+import Vision from './components/Vision';
+import Missions from './components/Missions';
+import Terminal from './components/Terminal';
 import Footer from './components/Footer';
 import Lenis from 'lenis';
+import CustomCursor from './components/ui/CustomCursor';
+import GlobalBackground from './components/ui/GlobalBackground';
 
 function App() {
   // Initialize Lenis for "Luxury" Smooth Scroll
@@ -36,34 +35,35 @@ function App() {
   }, []);
 
   return (
-    <div className="bg-white min-h-screen text-gray-900 selection:bg-blue-100 selection:text-blue-900">
+    <div className="bg-void min-h-screen text-platinum font-sans selection:bg-signal-amber selection:text-void-black cursor-none">
+      <CustomCursor />
+      <GlobalBackground />
 
-      {/* Global Header (Sticky & Glass) */}
-      <header className="fixed top-0 left-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-gray-100 px-6 py-4 flex justify-between items-center">
-        <div className="text-lg font-display font-bold tracking-tight text-black cursor-pointer">
-          THE AXIS
-        </div>
-        <button
-          onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-          className="bg-black text-white px-5 py-2 rounded-full text-sm font-medium hover:bg-gray-800 transition-colors duration-300"
-        >
-          Contact
-        </button>
-      </header>
+      <div className="relative z-10">
+        <nav className="fixed top-0 left-0 right-0 z-50 px-6 py-6 mix-blend-difference flex justify-between items-center pointer-events-none">
+          <div className="text-xl font-display font-bold tracking-tight text-platinum pointer-events-auto">
+            VIZOR Agent
+          </div>
+          <button
+            onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+            className="px-6 py-2 border border-platinum/20 rounded-full text-sm font-mono text-platinum hover:bg-platinum hover:text-void-black transition-all duration-300 pointer-events-auto backdrop-blur-sm"
+          >
+            お問い合わせ
+          </button>
+        </nav>
 
-      <main className="pt-20">
-        <Hero />
-        <Benefits />
-        <Problem />
-        <Authority />
-        <Compensation />
-        <Impact />
-        <div id="contact">
-          <Contact />
-        </div>
-      </main>
+        <main>
+          <Hero />
+          <Vision />
+          <Missions />
 
-      <Footer />
+          <div id="contact">
+            <Terminal />
+          </div>
+        </main>
+
+        <Footer />
+      </div>
     </div>
   );
 }
