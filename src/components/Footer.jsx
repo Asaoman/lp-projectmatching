@@ -28,7 +28,7 @@ const Footer = () => {
                         transition={{ delay: 0.2 }}
                         className="group cursor-pointer"
                     >
-                        <h3 className="text-sm font-mono-data text-zinc-400 mb-4">専門家の方へ</h3>
+                        <h3 className="text-sm font-mono-data text-zinc-400 mb-4">エキスパートの方へ</h3>
                         <div className="text-5xl md:text-7xl font-serif-display group-hover:text-signal-amber transition-colors duration-500">
                             登録を<br />申し込む
                         </div>
@@ -36,25 +36,39 @@ const Footer = () => {
                     </motion.div>
                 </div>
 
-                {/* ボトムバー */}
-                <div className="flex flex-col md:flex-row justify-between items-end gap-8">
-                    <div>
-                        <div className="text-2xl font-serif-display mb-2">THE AXIS</div>
-                        <div className="text-xs font-mono-data text-zinc-500">
-                            © 2025 THE AXIS. ALL RIGHTS RESERVED.<br />
-                            東京 / シンガポール / ニューヨーク
-                        </div>
+                {/* フッター情報 */}
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+                    <div className="md:col-span-2">
+                        <h4 className="text-3xl font-serif-display mb-4">VIZOR Agent</h4>
+                        <p className="text-zinc-400 text-sm leading-relaxed">
+                            トップエキスパートを、<br />
+                            プロジェクト単位でアサイン
+                        </p>
                     </div>
 
-                    <div className="flex gap-8">
-                        {["LINKEDIN", "TWITTER", "お問い合わせ"].map((link, i) => (
-                            <a key={i} href="#" className="text-xs font-mono-data text-zinc-400 hover:text-platinum transition-colors">
-                                {link}
-                            </a>
-                        ))}
+                    <div>
+                        <h5 className="text-sm font-mono-data text-zinc-400 mb-4">サービス</h5>
+                        <ul className="space-y-2 text-sm text-zinc-500">
+                            <li>エキスパート検索</li>
+                            <li>プロジェクト相談</li>
+                            <li>契約サポート</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h5 className="text-sm font-mono-data text-zinc-400 mb-4">会社情報</h5>
+                        <ul className="space-y-2 text-sm text-zinc-500">
+                            <li>運営会社</li>
+                            <li>プライバシーポリシー</li>
+                            <li>利用規約</li>
+                        </ul>
                     </div>
                 </div>
 
+                {/* コピーライト */}
+                <div className="text-center text-xs text-zinc-600 pt-8 border-t border-zinc-800">
+                    © 2024 VIZOR Agent. All rights reserved.
+                </div>
             </div>
         </footer>
     );

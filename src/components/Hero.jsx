@@ -44,7 +44,7 @@ const Hero = () => {
         >
           <span className="w-2 h-2 bg-signal-amber rounded-full animate-pulse"></span>
           <span className="text-sm font-mono text-zinc-400 tracking-wide">
-            予算付きプロジェクト × 業界トップリーダー
+            VIZOR Agent
           </span>
         </motion.div>
 
@@ -56,8 +56,8 @@ const Hero = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-5xl md:text-7xl lg:text-8xl font-display font-serif text-platinum leading-tight tracking-tight"
           >
-            スタートアップ経営者、<br />
-            トップ経営者を<br />
+            トップエキスパートを、<br />
+            プロジェクト単位で<br />
             <span className="gradient-text">アサイン</span>
           </motion.h1>
 
@@ -67,10 +67,8 @@ const Hero = () => {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="text-lg md:text-xl font-body text-zinc-400 max-w-3xl mx-auto leading-relaxed"
           >
-            業界カンファレンスで50回以上登壇した実績を持つ業界リーダーが、<br />
-            あなたの予算付きプロジェクトに参画。<br />
-            Fortune 500企業の元CXO、ユニコーン創業者など、<br />
-            確かな実績を持つエキスパートのみをご紹介します。
+            業界トップクラスの専門家を、<br />
+            あなたのプロジェクトに。
           </motion.p>
         </div>
 
@@ -82,9 +80,9 @@ const Hero = () => {
           className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-8"
         >
           {[
-            { label: "予算規模", value: "¥1億〜10億+", desc: "大型プロジェクト対応" },
-            { label: "登壇実績", value: "平均80回以上", desc: "業界認知度の証明" },
-            { label: "マッチング", value: "最短3日", desc: "スピード対応" }
+            { label: "登録エキスパート", value: "500+", desc: "各分野のトップクラス" },
+            { label: "プロジェクト成功率", value: "98%", desc: "高い満足度" },
+            { label: "平均アサイン期間", value: "3営業日", desc: "スピーディー" }
           ].map((item, i) => (
             <motion.div key={i}
               className="glass-card p-6 rounded-lg"
@@ -112,8 +110,8 @@ const Hero = () => {
           {/* ライブ予算ティッカー */}
           <div className="flex items-center gap-3 text-sm font-mono text-zinc-500">
             <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
-            <span>稼働中プロジェクト総予算:</span>
-            <span className="text-platinum font-semibold">¥{budget.toLocaleString()}</span>
+            <span>稼働中プロジェクト数:</span>
+            <span className="text-platinum font-semibold">{Math.floor(budget / 10000000)}</span>
           </div>
         </motion.div>
       </motion.div>

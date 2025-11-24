@@ -37,7 +37,7 @@ const Contact = () => {
                 >
                     <h2 className="text-4xl md:text-6xl font-serif-display mb-6">お問い合わせ</h2>
                     <p className="text-lg text-zinc-300 max-w-2xl mx-auto">
-                        プロジェクトのご相談、専門家登録に関するお問い合わせは、
+                        VIZOR Agentへのお問い合わせは、
                         以下のフォームよりお気軽にご連絡ください。
                     </p>
                 </motion.div>
@@ -68,7 +68,7 @@ const Contact = () => {
                                 />
                                 <div className="text-center">
                                     <div className="font-serif-display text-lg mb-1">プロジェクト相談</div>
-                                    <div className="text-xs text-zinc-400">専門家をお探しの方</div>
+                                    <div className="text-xs text-zinc-400">エキスパートをお探しの方</div>
                                 </div>
                             </label>
                             <label className={`border ${formData.type === 'expert' ? 'border-signal-amber bg-zinc-800/50' : 'border-zinc-700'} p-4 cursor-pointer hover:border-signal-amber/50 transition-colors bg-zinc-900/30`}>
@@ -81,7 +81,7 @@ const Contact = () => {
                                     className="sr-only"
                                 />
                                 <div className="text-center">
-                                    <div className="font-serif-display text-lg mb-1">専門家登録</div>
+                                    <div className="font-serif-display text-lg mb-1">エキスパート登録</div>
                                     <div className="text-xs text-zinc-400">プロジェクトに参画したい方</div>
                                 </div>
                             </label>

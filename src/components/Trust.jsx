@@ -35,7 +35,7 @@ const Trust = () => {
                         viewport={{ once: true }}
                         className="inline-flex items-center gap-2 px-4 py-2 glass-card rounded-full mb-8"
                     >
-                        <span className="text-sm font-mono text-zinc-500">登壇実績で証明された専門性</span>
+                        <span className="text-sm font-mono text-zinc-500">厚選されたトップエキスパート</span>
                     </motion.div>
 
                     <motion.h2
@@ -44,9 +44,8 @@ const Trust = () => {
                         viewport={{ once: true }}
                         className="text-4xl md:text-6xl font-display text-platinum mb-6 leading-tight"
                     >
-                        スタートアップ経営者、<br />
-                        トップ経営者、<br />
-                        業界リーダーをアサイン
+                        各分野の<br />
+                        トップクラス専門家
                     </motion.h2>
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
